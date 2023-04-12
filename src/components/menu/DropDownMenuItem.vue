@@ -9,7 +9,7 @@ defineProps({
     },
     items: {
         type: Array,
-        default: []
+        default: () => []
     }
 });
 </script>
@@ -19,7 +19,7 @@ defineProps({
         <div class="block py-3 px-6 border-b-2 border-transparent group/menu0">{{ title }}</div>
 
         <ul class="invisible group-hover/menu0:visible font-normal absolute left-0 right-auto top-full z-50 border-b-0 text-left bg-white text-gray-700 border border-gray-100 min-w-[10rem]">
-            <li v-for="item in items" class="relative hover:bg-gray-50 group/menu1">
+            <li v-for="(item, index) in items" class="relative hover:bg-gray-50 group/menu1" v-bind:key="index">
                 <RouterLink v-if="item.href" :to="item.href" class="block py-3 px-6 border-b-2 border-transparent">{{ item.title }}</RouterLink>
                 <SubMenuItem v-else :title="item.title" :items="item.items"></SubMenuItem>
             </li>

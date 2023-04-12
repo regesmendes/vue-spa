@@ -1,14 +1,11 @@
 <script setup>
+import { ref } from 'vue';
 import IconCross from './icons/IconCross.vue';
 import IconSearch from './icons/IconSearch.vue';
 import SearchBox from './SearchBox.vue';
 
-defineProps({
-    visible: {
-        type: Boolean,
-        default: false
-    }
-})
+const visible = ref(false)
+
 </script>
 
 <template>

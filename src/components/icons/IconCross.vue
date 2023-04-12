@@ -1,6 +1,4 @@
 <script setup>
-import { isIntegerKey } from '@vue/shared';
-
 defineProps({
     size: {
         type: String,

@@ -27,17 +27,17 @@ defineProps({
                 <nav class="relative flex flex-wrap">
                     <div class="text-center py-4 w-full font-bold border-b border-gray-100">{{ title }}</div>
                     <ul id="side-menu" class="w-full float-none flex flex-col">
-                        <li v-for="item1 in menu.mainMenu">
+                        <li v-for="(item1, index1) in menu.mainMenu" v-bind:key="index1">
                             <RouterLink v-if="item1.href" :to="item1.href" class="block py-2 px-5 border-b border-gray-100 hover:bg-gray-700 cursor-pointer" @click="emits('selected')">{{ item1.title }}</RouterLink>
                             <div v-else>
                                 <div class="block py-2 px-5 border-b border-gray-100 hover:bg-gray-700">{{ item1.title }}</div>
                                 <ul>
-                                    <li v-for="item2 in item1.items">
+                                    <li v-for="(item2, index2) in item1.items" v-bind:key="index2">
                                         <RouterLink v-if="item2.href" :to="item2.href" class="block py-2 px-10 border-b border-gray-100 hover:bg-gray-700 cursor-pointer" @click="emits('selected')">{{ item2.title }}</RouterLink>
                                         <div v-else>
                                             <div class="block py-2 px-10 border-b border-gray-100 hover:bg-gray-700">{{ item2.title }}</div>
                                             <ul>
-                                                <li v-for="item3 in item2.items" class="hover:bg-gray-700">
+                                                <li v-for="(item3, index3) in item2.items" class="hover:bg-gray-700" v-bind:key="index3">
                                                     <RouterLink :to="item3.href" class="block py-2 px-[3.75rem] border-b border-gray-100 cursor-pointer" @click="emits('selected')">{{ item3.title }}</RouterLink>
                                                 </li>
                                             </ul>
