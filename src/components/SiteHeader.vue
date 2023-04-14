@@ -1,9 +1,12 @@
 <script setup>
-import SearchComponent from './SearchComponent.vue';
-import NavMenu from './menu/NavMenu.vue';
-import MobileMenu from './menu/MobileMenu.vue';
-import MobileMenuToggle from './menu/MobileMenuToggle.vue';
-import UserComponent from './UserComponent.vue';
+import { ref } from 'vue'
+
+import SearchComponent from './SearchComponent.vue'
+import NavMenu from './menu/NavMenu.vue'
+import MobileMenu from './menu/MobileMenu.vue'
+import MobileMenuToggle from './menu/MobileMenuToggle.vue'
+import UserComponent from './UserComponent.vue'
+import IconLoading from './icons/IconLoading.vue'
 
 defineProps({
     appName: {
@@ -11,6 +14,8 @@ defineProps({
         default: 'vue-spa'
     }
 });
+
+const showMobileMenu = ref(false)
 </script>
 
 <template>
@@ -34,15 +39,6 @@ defineProps({
                 </div>
             </div>
         </nav>
+        <IconLoading></IconLoading>
     </header>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            showMobileMenu: false
-        };
-    }
-}
-</script>

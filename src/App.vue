@@ -7,7 +7,7 @@ const appName = 'Vue3 SPA'
 
 <template>
     <SiteHeader :appName="appName"></SiteHeader>
-    <div class="mt-[80px]">
+    <div class="p-1 mt-16 lg:p-5 lg:mt-10">
         <RouterView />
     </div>
 </template>

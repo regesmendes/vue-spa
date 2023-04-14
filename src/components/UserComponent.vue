@@ -1,8 +1,9 @@
 <script setup>
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, inject } from 'vue'
 import { useUserStore } from '@/stores/user'
 import UserLoginPopup from './UserLoginPopup.vue'
 
+const axios = inject('axios')
 const user = useUserStore()
 const userPic = ref()
 const showLogin = ref(false)
@@ -21,38 +22,34 @@ watchEffect(async () => {
 })
 
 /**
- * perform the login
- */
-const login = () => {
-    user.profile.authenticated = true
-    user.profile.name = 'Logged'
-    showLogin.value = false;
-}
-
-/**
  * perform the logout
  */
 const logout = () => {
-    user.profile.authenticated = false
-    user.profile.name = 'Guest'
+    axios.post('http://localhost/logout')
+    .catch(error => {
+        console.log('error', error)
+    }).then( _=> {
+        user.profile.authenticated = false
+        user.profile.name = 'Guest'
+    })
 }
 </script>
 
 <template>
     <div class="relative border-r lg:border-l border-gray-800 hover:bg-gray-900 group/usermenu">
-        <img :src="userPic" alt="user picture" class="w-5 h-5 my-3 mx-6 cursor-pointer">
+        <img :src="userPic" alt="user picture" class="w-5 h-5 my-3 mx-6 cursor-pointer group/usermenu">
 
-        <ul class="invisible group-hover/usermenu:visible absolute left-[-90px] top-full w-full min-w-[10rem] text-gray-700">
-            <li class="border border-gray-100 hover:bg-gray-50 px-2 py-1">
+        <ul class="invisible group-hover/usermenu:visible absolute left-[-90px] top-full w-full min-w-[10rem] text-gray-700 bg-white z-50">
+            <li class="border border-gray-100 hover:bg-gray-50 bg-white px-2 py-1">
                 {{ user.profile.name }}
             </li>
-            <li v-if="user.profile.authenticated" class="border border-gray-100 hover:bg-gray-50 px-2 py-1 cursor-pointer" @click="logout">
+            <li v-if="user.profile.authenticated" class="border border-gray-100 hover:bg-gray-50 bg-white px-2 py-1 cursor-pointer" @click="logout">
                 Logout
             </li>
-            <li v-else class="border border-gray-100 hover:bg-gray-50 px-2 py-1 cursor-pointer" @click="showLogin = !showLogin">
+            <li v-else class="border border-gray-100 hover:bg-gray-50 bg-white px-2 py-1 cursor-pointer" @click="showLogin = !showLogin">
                 Login
             </li>
         </ul>
     </div>
-    <UserLoginPopup v-if="showLogin" @close="showLogin = !showLogin" @login="login"></UserLoginPopup>
+    <UserLoginPopup v-if="showLogin" @close="showLogin = false"></UserLoginPopup>
 </template>
