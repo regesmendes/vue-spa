@@ -14,6 +14,12 @@ module.exports = {
       'extends': [
         'plugin:cypress/recommended'
       ]
+    },
+    {
+        files: ['*.config.js'],
+        env: {
+            node: true,
+        }
     }
   ],
   parserOptions: {

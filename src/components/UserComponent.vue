@@ -2,8 +2,10 @@
 import { ref, watchEffect, inject } from 'vue'
 import { useUserStore } from '@/stores/user'
 import UserLoginPopup from './UserLoginPopup.vue'
+import { useAppConfigStore } from '../stores/appConfig';
 
 const axios = inject('axios')
+const loadingScreen = useAppConfigStore().loadingScreen
 const user = useUserStore()
 const userPic = ref()
 const showLogin = ref(false)
@@ -24,14 +26,18 @@ watchEffect(async () => {
 /**
  * perform the logout
  */
-const logout = () => {
-    axios.post('http://localhost/logout')
+const logout = async () => {
+    loadingScreen.locked = true
+    loadingScreen.loading = true
+
+    await axios.post('/logout')
     .catch(error => {
         console.log('error', error)
-    }).then( _=> {
-        user.profile.authenticated = false
-        user.profile.name = 'Guest'
     })
+
+    user.profile.authenticated = false
+    user.profile.name = 'Guest'
+    loadingScreen.loading = false
 }
 </script>
 

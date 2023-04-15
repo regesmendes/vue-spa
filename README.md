@@ -1,14 +1,19 @@
 # vue-spa
 
-This template should help get you started developing with Vue 3 in Vite.
+This is my minimal pack to start a Vue project.
+It was the vue latest version at the time of repository creation (April, 2023), with the following changes:
+- Removed cypress (yes, I had choosen it during install);
+- Removed the default Vue/Vite view stuff;
+- Added [axios](https://axios-http.com/docs/intro);
+- Added [tailwindcss](https://tailwindcss.com/);
+- Added [font awesome](https://fontawesome.com/);
+- Created a menu component to have an easier way to add menu options;
+- Created a login/register popup;
+- Created a "loading screen" component to present a proper status to the user while running blocking operations, like the authentication;
+- Created basic integration with API* register, login and logout routes.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+* Note that this SPA scaffold is intended to work with a Laravel API with the default breeze API routes.
+Please, refer to [laravel-api](https://github.com/regesmendes/laravel-api) for more details about the API.
 
 ## Project Setup
 
@@ -28,30 +33,11 @@ npm run dev
 npm run build
 ```
 
-### Run Headed Component Tests with [Cypress Component Testing](https://on.cypress.io/component)
-
-```sh
-npm run test:unit:dev # or `npm run test:unit` for headless testing
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
 ### Lint with [ESLint](https://eslint.org/)
 
 ```sh
 npm run lint
 ```
+
+### Contact
+Feel free to get in touch for comments, suggestions or questions.
