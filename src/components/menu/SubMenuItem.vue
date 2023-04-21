@@ -19,7 +19,7 @@ defineProps({
 
         <ul :class="submenuClasses" class="invisible group-hover/menu1:visible absolute transform top-full z-50 border-b-0 text-left -mt-10 ml-0 mr-0 bg-white border border-gray-100 min-w-[10rem]">
             <li v-for="(item, index) in items" class="relative hover:bg-gray-50" v-bind:key="index">
-                <RouterLink :to="item.href" class="block py-2 px-6 border-b border-gray-100">{{ item.title }}</RouterLink>
+                <RouterLink :to="{name: item.route}" class="block py-2 px-6 border-b border-gray-100">{{ item.title }}</RouterLink>
             </li>
         </ul>
     </div>
