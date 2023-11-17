@@ -3,6 +3,7 @@ import { inject } from 'vue'
 import { RouterView } from 'vue-router'
 import SiteHeader from './components/SiteHeader.vue'
 import { useAppConfigStore } from './stores/appConfig'
+import Cookies from 'js-cookie';
 
 /** app setup */
 const appName = 'Vue3 SPA'
@@ -16,6 +17,7 @@ document.title = appName
 async function csrfInterceptor(error) {
     if (error.response.status === 419) {
         await axios.get(appSettings.apiRoute('csrf-cookie'))
+	error.response.config.headers['X-XSRF-TOKEN'] = Cookies.get('XSRF-TOKEN')
         return axios(error.response.config)
     }
     return Promise.reject(error)
