@@ -27,7 +27,6 @@
     "@tailwindcss/postcss": "^4.3.3",
     "@vitejs/plugin-vue": "^6.0.10",
     "eslint": "^10.13.0",
-    "eslint-plugin-cypress": "^7.0.2",
     "eslint-plugin-vue": "^10.11.1",
     "globals": "^17.13.0",
     "postcss": "^8.5.31",
