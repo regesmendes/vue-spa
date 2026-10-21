@@ -15,7 +15,7 @@ const showLogin = ref(false)
 watchEffect(async () => {
     try {
         userPic.value = (await import(/* @vite-ignore */ `@/assets/images/${auth.user.data.photoFilename}.png`)).default
-    } catch (e) {
+    } catch {
         // User picture not found, loading the default anonymous picture
         const defaultPic = 'user_pic'
         userPic.value = (await import(/* @vite-ignore */ `@/assets/images/${defaultPic}.png`)).default
